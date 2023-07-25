@@ -1,0 +1,39 @@
+{
+    "name": "rmunate/laravel-config-runtime",
+    "description": "The `LaravelRuntime` Library empowers you to modify Laravel configuration values at runtime. It's essential to note that these changes won't affect the values in the `.env` file; they will only apply while your scripts are running.",
+    "keywords": [
+        "laravel",
+        "php",
+        "runtime"
+    ],
+    "homepage": "https://github.com/rmunate/LaravelConfigRuntime",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Rmunate\\LaravelConfigRuntime\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Raul Mauricio Uñate Castro",
+            "email": "raulmauriciounate@gmail.com",
+            "homepage": "https://github.com/rmunate",
+            "role": "owner"
+        }
+    ],
+    "require": {
+        "php": "^7.4|^8.0",
+        "illuminate/collections": "^9.0|^10.0",
+        "illuminate/contracts": "^9.0|^10.0",
+        "illuminate/support": "^9.0|^10.0"
+    },
+    "require-dev": {},
+    "extra" : {
+        "branch-alias" : {
+            "dev-main": "v1.0.x-dev"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
