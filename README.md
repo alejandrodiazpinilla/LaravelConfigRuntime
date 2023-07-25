@@ -132,9 +132,7 @@ This is very useful; you can change any configuration value at runtime by simply
 ```php
 use Rmunate\LaravelConfigRuntime\LaravelRuntime;
 
-// You can send an array or simply the full paths separated by
-
- commas.
+// You can send an array or simply the full paths separated by commas.
 LaravelRuntime::config()->file('mail')->set('mailers.smtp.username', 'xxxx@xxxx.com');
 LaravelRuntime::config()->file('mail')->set('mailers.smtp.password', 'xxxxxxx');
 
