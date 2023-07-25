@@ -91,7 +91,7 @@ class Laravel extends BaseLaravel
     public function getOrFail(string $route = '', $default = null)
     {
         $data = $this->generatePrefix($route, $this->file);
-        if (!$this->has($data)) {
+        if (!$this->config->has($data)) {
             throw ConfigException::catch("The '" . $data . "' configuration property is not defined in the framework.");
         }
         return (empty($data)) ? $this->all() : $this->config->get($data, $default);
@@ -117,7 +117,8 @@ class Laravel extends BaseLaravel
      */
     public function has(string $route = '')
     {
-        return $this->config->has($route);
+        $data = $this->generatePrefix($route, $this->file);
+        return $this->config->has($data);
     }
 
     /**
@@ -132,7 +133,7 @@ class Laravel extends BaseLaravel
 
         $data = [];
         foreach ($indexes as $index) {
-            $data[$index] = $this->has($index);
+            $data[$index] = $this->config->has($index);
         }
         return $data;
     }

@@ -1,122 +1,164 @@
-# PhpRunTime: Ajusta la configuración de PHP en tiempo de ejecución
+# LaravelRuntime: Configura Laravel sobre la marcha!
 
-La biblioteca `PhpRunTime` proporciona métodos para gestionar la configuración de PHP en tiempo de ejecución. Permite establecer, obtener y restaurar opciones de configuración, así como verificar su existencia y estado.
+La librería `LaravelRuntime` te permite modificar los valores de configuración de Laravel en tiempo de ejecución. Es importante tener en cuenta que estos cambios no afectarán los valores en el archivo `.env`, sino que solo se aplicarán mientras ejecutas los scripts. Ahora podrás definir cada script con qué características trabajará, qué base de datos usar, métodos de cache, ajustes de autenticación, correo electrónico a usar y todas las demás opciones.
 
-![RUNTIME_PHP](https://github.com/rmunate/PHPInfoServer/assets/91748598/873f40e0-9278-4a82-a50c-5baef7b7691a)
+![RUNTIME_LARAVEL](https://github.com/rmunate/PHPInfoServer/assets/91748598/b3f78d8b-9f01-4c81-8d08-a0f86791c4f9)
 
-## Tabla de contenidos
+A continuación, te mostraremos varios ejemplos posibles para que puedas identificar las amplias facilidades de uso.
+
+## Tabla de Contenido
+
 1. [Instalación](#instalación)
-2. [Métodos disponibles](#métodos-disponibles)
-3. [Ejemplos de uso](#ejemplos-de-uso)
-   - [Establecer una opción de configuración](#establecer-una-opción-de-configuración)
-   - [Obtener el valor de una opción de configuración](#obtener-el-valor-de-una-opción-de-configuración)
-   - [Restaurar una opción de configuración](#restaurar-una-opción-de-configuración)
-   - [Restaurar todas las opciones de configuración](#restaurar-todas-las-opciones-de-configuración)
-4. [Aclaraciones](#aclaraciones)
-5. [Creador](#creador)
-6. [Licencia](#licencia)
+2. [Métodos Disponibles](#métodos-disponibles)
+    - [Obtener todos los datos de configuración](#obtener-todos-los-datos-de-configuración)
+    - [Obtener la configuración de un archivo específico](#obtener-la-configuración-de-un-archivo-específico)
+    - [Formas de consultar valores](#formas-de-consultar-valores)
+    - [Generar Excepción De No Poderse Consultar](#generar-excepción-de-no-poderse-consultar)
+    - [Obtener Varios Valores](#obtener-varios-valores)
+    - [Validar que un valor de configuración exista](#validar-que-un-valor-de-configuración-exista)
+    - [Validar que varios valores de configuración existan](#validar-que-varios-valores-de-configuración-existan)
+    - [Cambiar un valor de configuración](#cambiar-un-valor-de-configuración)
+    - [Eliminar un valor de configuración](#eliminar-un-valor-de-configuración)
+3. [Creador](#creador)
+4. [Licencia](#licencia)
 
 ## Instalación
+
 Para instalar el paquete a través de Composer, ejecuta el siguiente comando:
 
 ```shell
 composer require rmunate/laravel-config-runtime
 ```
 
-## Métodos disponibles
+## Métodos Disponibles
 
-| Método | Descripción |
-| - | - |
-| `PhpRunTime::set($opcion, $valor)` | Establece el valor de una opción de configuración de PHP en tiempo de ejecución utilizando `ini_set()`. |
-| `PhpRunTime::get($opcion)` | Obtiene el valor actual de una opción de configuración de PHP. Si la opción no está establecida o no se encuentra, devuelve `null`. |
-| `PhpRunTime::restore($opcion)` | Restaura una opción de configuración de PHP a su valor predeterminado. Devuelve `true` si la restauración es exitosa, o `false` en caso contrario. |
-| `PhpRunTime::restoreAll()` | Restaura todas las opciones de configuración de PHP a sus valores predeterminados. Devuelve `true` si todas las restauraciones son exitosas, o `false` en caso contrario. |
-| `PhpRunTime::isOptionSet($opcion)` | Verifica si una opción de configuración está establecida y tiene un valor no vacío. Devuelve `true` si la opción está establecida, o `false` en caso contrario. |
-| `PhpRunTime::doesOptionExist($opcion)` | Verifica si una opción de configuración existe en el archivo `php.ini`. Devuelve `true` si la opción existe, o `false` en caso contrario. |
+A continuación te mostraremos los posibles usos de la biblioteca. Es muy fácil y demasiado flexible, para que domines la configuración de Laravel con facilidad.
 
-## Ejemplos de uso
+### Obtener todos los datos de configuración
 
-#### Establecer una opción de configuración
+Si deseas obtener todos los datos de configuración actual en un arreglo asociativo, podrás hacerlo fácilmente de la siguiente manera:
 
 ```php
-use Rmunate\Server\PhpRunTime;
+use Rmunate\LaravelConfigRuntime\LaravelRuntime;
 
-// Establecer la opción "display_errors" en "On"
-PhpRunTime::set('display_errors', 'On');
+// Método principal
+LaravelRuntime::config()->all();
 
-// Verificar si la opción está establecida y tiene un valor no vacío
-if (PhpRunTime::isOptionSet('display_errors')) {
-    // 'La opción "display_errors" está habilitada.';
-} else {
-    // 'La opción "display_errors" no está establecida.';
-}
+// Alias del método anterior
+LaravelRuntime::config()->get();
 ```
 
-#### Obtener el valor de una opción de configuración
+### Obtener la configuración de un archivo específico
+
+Recuerda que Laravel trae una carpeta con el nombre "config" donde se encuentran los diferentes archivos de configuración. Este paquete te facilita definir cuál de estos archivos de configuración consultar.
 
 ```php
-use Rmunate\Server\PhpRunTime;
+use Rmunate\LaravelConfigRuntime\LaravelRuntime;
 
-// Obtener el valor actual de la opción "max_execution_time"
-$maxExecutionTime = PhpRunTime::get('max_execution_time');
-
-if ($maxExecutionTime !== null) {
-    // "El valor actual de 'max_execution_time' es: $maxExecutionTime segundos.";
-} else {
-    // "La opción 'max_execution_time' no está establecida.";
-}
+// Obtendrás el estado completo de configuración del archivo definido
+LaravelRuntime::config()->file('app')->get();
 ```
 
-#### Restaurar una opción de configuración
+### Formas de consultar valores
+
+Ahora, si deseas conocer un valor específico de la configuración actual de Laravel en tiempo de ejecución, podrás usar cualquiera de las siguientes formas:
 
 ```php
-use Rmunate\Server\PhpRunTime;
+use Rmunate\LaravelConfigRuntime\LaravelRuntime;
 
-// Establecer temporalmente la opción "memory_limit" en "256M"
-PhpRunTime::set('memory_limit', '256M');
+// Definiendo el archivo y luego el valor a obtener
+LaravelRuntime::config()->file('app')->get('name');
 
-// Restaurar la opción "memory_limit" a su valor predeterminado
-PhpRunTime::restore('memory_limit');
-
-// Verificar si la opción está establecida y tiene un valor no vacío
-if (PhpRunTime::isOptionSet('memory_limit')) {
-    // 'La opción "memory_limit" está establecida.';
-} else {
-    // 'La opción "memory_limit" no está establecida.';
-}
+// Sin definir el archivo, usando solo el método get indicando la ruta completa
+LaravelRuntime::config()->get('app.name');
 ```
 
-#### Restaurar todas las opciones de configuración
+### Generar Excepción De No Poderse Consultar
+
+Si lo requieres, podrás lanzar una excepción al tratar de consultar un valor inexistente en la configuración del marco.
 
 ```php
-use Rmunate\Server\PhpRunTime;
+use Rmunate\LaravelConfigRuntime\LaravelRuntime;
 
-// Establecer temporalmente algunas opciones de configuración
-PhpRunTime::set('display_errors', 'On');
-PhpRunTime::set('error_reporting', E_ALL);
+// Definiendo el archivo y luego el valor a obtener
+LaravelRuntime::config()->file('app')->getOrFail('names');
 
-// Restaurar todas las opciones a sus valores predeterminados
-PhpRunTime::restoreAll();
-
-// Verificar si las opciones están establecidas y tienen valores no vacíos
-if (PhpRunTime::isOptionSet('display_errors') || PhpRunTime::isOptionSet('error_reporting')) {
-    // 'Algunas opciones no pudieron ser restauradas.';
-} else {
-    // 'Todas las opciones se restauraron exitosamente.';
-}
+// Sin definir el archivo, usando solo el método get indicando la ruta completa
+LaravelRuntime::config()->getOrFail('name2');
 ```
 
-## Aclaraciones
+### Obtener Varios Valores
 
-- Los cambios realizados con el método `set()` solo son válidos durante la ejecución del script actual y no afectan el archivo `php.ini`. Para realizar cambios permanentes, es necesario editar manualmente el archivo `php.ini`.
+Pensando en que no estés usando constantemente el método GET para obtener varios valores, con esta forma de consulta podrás enviar los valores que desees para consulta simultánea.
 
-- Algunas opciones de configuración pueden estar deshabilitadas en entornos de hosting compartido, lo que puede limitar la capacidad de cambiar ciertas configuraciones.
+```php
+use Rmunate\LaravelConfigRuntime\LaravelRuntime;
 
-- Es importante tener precaución al modificar la configuración de PHP, ya que algunos cambios pueden afectar el rendimiento y la seguridad de las aplicaciones. Se recomienda consultar la documentación oficial de PHP para obtener información detallada sobre cada opción de configuración.
+// Puedes enviar un arreglo o simplemente los valores que requieres separados por una coma.
+LaravelRuntime::config()->getMany('app.name', 'cache.default');
+LaravelRuntime::config()->getMany(['app.name', 'cache.default']);
+```
+
+### Validar que un valor de configuración exista
+
+Si es indispensable consultar si un valor de configuración existe, entonces con este método será muy fácil.
+
+```php
+use Rmunate\LaravelConfigRuntime\LaravelRuntime;
+
+// Puedes enviar la ruta completa del valor a buscar
+LaravelRuntime::config()->has('app.name');
+
+// También puedes definir el archivo a buscar.
+LaravelRuntime::config()->file('app')->has('name');
+```
+
+### Validar que varios valores de configuración existan
+
+Si quieres validar varios valores de configuración, este puede ser el método que requieres. Algo importante es que aquí NO podrás definir el archivo a consultar, esto se debe a que con la ruta completa del valor podrías validar varios archivos simultáneamente.
+
+```php
+use Rmunate\LaravelConfigRuntime\LaravelRuntime;
+
+// Puedes enviar un arreglo o simplemente las rutas completas separadas por coma.
+LaravelRuntime::config()->hasMany('app.name', 'cache.default');
+LaravelRuntime::config()->hasMany(['app.name', 'cache.default']);
+```
+
+### Cambiar un valor de configuración
+
+Esto sí que es útil. Puedes cambiar cualquier valor de configuración en tiempo de ejecución, simplemente define lo que requieres. ¿Necesitas cambiar la conexión a la base de datos? ¿Requieres usar un correo personalizado para notificaciones? Bueno, en ese caso, esta es la solución.
+
+```php
+use Rmunate\LaravelConfigRuntime\LaravelRuntime;
+
+// Puedes enviar un arreglo o simplemente las rutas completas separadas por coma.
+LaravelRuntime::config()->file('mail')->set('mailers.smtp.username', 'xxxx@xxxx.com');
+LaravelRuntime::config()->file('mail')->set('mailers.smtp.password', 'xxxxxxx');
+
+// También puedes cambiar valores sin necesidad de definir el archivo a intervenir.
+LaravelRuntime::config()->set('app.name', 'CodeMaestro');
+```
+
+### Eliminar un valor de configuración
+
+Bueno, esto es algo que solo tú sabes
+
+. Si lo requieres, aquí lo tienes, rápido y fácil.
+
+```php
+use Rmunate\LaravelConfigRuntime\LaravelRuntime;
+
+// Puedes definir el archivo a usar si así lo deseas, simplemente esta propiedad quedará como nula mientras termina el script.
+LaravelRuntime::config()->file('app')->unset('name');
+LaravelRuntime::config()->unset('app.name');
+```
 
 ## Creador
+
 - 🇨🇴 Raúl Mauricio Uñate Castro
-- Email: raulmauriciounate@gmail.com
+- Correo electrónico: raulmauriciounate@gmail.com
 
 ## Licencia
+
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
