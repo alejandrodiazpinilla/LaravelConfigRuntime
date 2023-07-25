@@ -20,7 +20,7 @@ La biblioteca `PhpRunTime` proporciona métodos para gestionar la configuración
 Para instalar el paquete a través de Composer, ejecuta el siguiente comando:
 
 ```shell
-composer require rmunate/php-config-runtime
+composer require rmunate/laravel-config-runtime
 ```
 
 ## Métodos disponibles

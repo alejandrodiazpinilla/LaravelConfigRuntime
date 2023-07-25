@@ -1,57 +1,22 @@
 <?php
 
-namespace Rmunate\Server;
+namespace Rmunate\LaravelConfigRuntime;
 
-use Illuminate\Support\Facades\Config;
-use Rmunate\Server\Bases\BaseLaravelRunTime;
+use Rmunate\LaravelConfigRuntime\Classes\Laravel;
 
-class LaravelRuntime extends BaseLaravelRunTime
+class LaravelRuntime
 {
     /**
-     * The prefix for configuration keys.
+     * Get an instance of the Laravel configuration wrapper.
      *
-     * @var string
-     */
-    private $prefix;
-
-    /**
-     * LaravelRuntime constructor.
+     * This method returns an instance of the `Laravel` class, which
+     * is a wrapper around Laravel's configuration repository. You can
+     * use this instance to interact with Laravel's configuration.
      *
-     * @param string $prefix The prefix to be added to configuration keys.
+     * @return \Rmunate\LaravelConfigRuntime\Classes\Laravel An instance of the `Laravel` class.
      */
-    public function __construct(string $prefix)
+    public static function config()
     {
-        $this->prefix = $prefix;
-    }
-
-    /**
-     * Set a configuration option with the specified value.
-     *
-     * @param string $prop The name of the configuration option.
-     * @param mixed $value The value to set for the option.
-     * @return bool True if the option was set successfully, false otherwise.
-     */
-    public function set($prop, $value): bool
-    {
-        if (empty($prop)) {
-            $prop = str_replace('..', '.', trim($this->prefix, '.'));
-            return Config::set($prop, $value) !== false;
-        }
-        return Config::set($this->prefix . $prop, $value) !== false;
-    }
-
-    /**
-     * Get the value of a configuration option.
-     *
-     * @param string $prop The name of the configuration option.
-     * @return mixed|null The value of the configuration option, or null if not found.
-     */
-    public function get($prop = '')
-    {
-        if (empty($prop)) {
-            $prop = str_replace('..', '.', trim($this->prefix, '.'));
-            return Config::get($prop);
-        }
-        return Config::get($this->prefix . $prop);
+        return Laravel::config();
     }
 }
