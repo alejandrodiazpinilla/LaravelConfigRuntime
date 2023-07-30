@@ -3,7 +3,7 @@
 namespace Rmunate\LaravelConfigRuntime\Bases;
 
 /**
- * BaseLaravel Class
+ * BaseLaravel Class.
  *
  * This abstract class serves as the base for creating Laravel configuration-related classes.
  * It provides a static method `config()` that can be used to instantiate a new instance of the extending class.
