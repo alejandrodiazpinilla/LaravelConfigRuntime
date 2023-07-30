@@ -2,6 +2,12 @@
 
 La librería `LaravelRuntime` te permite modificar los valores de configuración de Laravel en tiempo de ejecución. Es importante tener en cuenta que estos cambios no afectarán los valores en el archivo `.env`, sino que solo se aplicarán mientras ejecutas los scripts. Ahora podrás definir cada script con qué características trabajará, qué base de datos usar, métodos de cache, ajustes de autenticación, correo electrónico a usar y todas las demás opciones.
 
+⚙️ Esta librería es compatible con versiones de Laravel 8.0 y superiores ⚙️
+
+[![Laravel 8.0+](https://img.shields.io/badge/Laravel-8.0%2B-orange.svg)](https://laravel.com)
+[![Laravel 9.0+](https://img.shields.io/badge/Laravel-9.0%2B-orange.svg)](https://laravel.com)
+[![Laravel 10.0+](https://img.shields.io/badge/Laravel-10.0%2B-orange.svg)](https://laravel.com)
+
 ![RUNTIME_LARAVEL](https://github.com/rmunate/PHPInfoServer/assets/91748598/b3f78d8b-9f01-4c81-8d08-a0f86791c4f9)
 
 A continuación, te mostraremos varios ejemplos posibles para que puedas identificar las amplias facilidades de uso.

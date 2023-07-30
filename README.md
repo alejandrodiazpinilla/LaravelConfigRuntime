@@ -2,6 +2,12 @@
 
 The `LaravelRuntime` library empowers you to modify Laravel configuration values at runtime. It is essential to note that these changes will not affect the values in the `.env` file; they will only apply while executing scripts. Now, you can define each script with specific features, select which database to use, set cache methods, authentication settings, email configurations, and all other options.
 
+⚙️ This library is compatible with Laravel versions 8.0 and above ⚙️
+
+[![Laravel 8.0+](https://img.shields.io/badge/Laravel-8.0%2B-orange.svg)](https://laravel.com)
+[![Laravel 9.0+](https://img.shields.io/badge/Laravel-9.0%2B-orange.svg)](https://laravel.com)
+[![Laravel 10.0+](https://img.shields.io/badge/Laravel-10.0%2B-orange.svg)](https://laravel.com)
+
 ![RUNTIME_LARAVEL](https://github.com/rmunate/PHPInfoServer/assets/91748598/b3f78d8b-9f01-4c81-8d08-a0f86791c4f9)
 
 Below, we'll demonstrate various possible examples to showcase the extensive usability.
