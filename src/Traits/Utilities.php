@@ -15,6 +15,7 @@ trait Utilities
      * characters (such as accented characters).
      *
      * @param array $data The array to convert to an object.
+     *
      * @return object The object representation of the input array.
      */
     public function toObject($data)
@@ -34,6 +35,7 @@ trait Utilities
      * or spaces) and false otherwise.
      *
      * @param string $cadena The filename to validate.
+     *
      * @return bool True if the filename is valid, false otherwise.
      */
     public function validateFileName($cadena)
