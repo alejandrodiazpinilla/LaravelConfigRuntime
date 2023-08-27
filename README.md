@@ -10,6 +10,8 @@ The `LaravelRuntime` library empowers you to modify Laravel configuration values
 
 ![RUNTIME_LARAVEL](https://github.com/rmunate/PHPInfoServer/assets/91748598/b3f78d8b-9f01-4c81-8d08-a0f86791c4f9)
 
+📖 [**DOCUMENTACIÓN EN ESPAÑOL**](README_SPANISH.md) 📖
+
 Below, we'll demonstrate various possible examples to showcase the extensive usability.
 
 ## Table of Contents
@@ -164,5 +166,10 @@ LaravelRuntime::config()->unset('app.name');
 - Email: raulmauriciounate@gmail.com
 
 ## License
+This project is under the [MIT License](https://choosealicense.com/licenses/mit/).
 
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
+🌟 Support My Projects! 🚀
+
+Make any contributions you see fit; the code is entirely yours. Together, we can do amazing things and improve the world of development. Your support is invaluable. ✨
+
+If you have ideas, suggestions, or just want to collaborate, we are open to everything! Join our community and be part of our journey to success! 🌐👩‍💻👨‍💻
