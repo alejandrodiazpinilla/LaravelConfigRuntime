@@ -10,6 +10,8 @@ La librería `LaravelRuntime` te permite modificar los valores de configuración
 
 ![RUNTIME_LARAVEL](https://github.com/rmunate/PHPInfoServer/assets/91748598/b3f78d8b-9f01-4c81-8d08-a0f86791c4f9)
 
+📖 [**DOCUMENTACIÓN EN INGLÉS**](README.md) 📖
+
 A continuación, te mostraremos varios ejemplos posibles para que puedas identificar las amplias facilidades de uso.
 
 ## Tabla de Contenido
@@ -56,7 +58,7 @@ LaravelRuntime::config()->get();
 
 ### Obtener la configuración de un archivo específico
 
-Recuerda que Laravel trae una carpeta con el nombre "config" donde se encuentran los diferentes archivos de configuración. Este paquete te facilita definir cuál de estos archivos de configuración consultar.
+Recuerda que Laravel trae una carpeta con el nombre `config` donde se encuentran los diferentes archivos de configuración. Este paquete te facilita definir cuál de estos archivos de configuración consultar.
 
 ```php
 use Rmunate\LaravelConfigRuntime\LaravelRuntime;
@@ -148,9 +150,7 @@ LaravelRuntime::config()->set('app.name', 'CodeMaestro');
 
 ### Eliminar un valor de configuración
 
-Bueno, esto es algo que solo tú sabes
-
-. Si lo requieres, aquí lo tienes, rápido y fácil.
+Bueno, esto es algo que solo tú sabes. Si lo requieres, aquí lo tienes, rápido y fácil.
 
 ```php
 use Rmunate\LaravelConfigRuntime\LaravelRuntime;
@@ -166,5 +166,10 @@ LaravelRuntime::config()->unset('app.name');
 - Correo electrónico: raulmauriciounate@gmail.com
 
 ## Licencia
+Este proyecto se encuentra bajo la [Licencia MIT](https://choosealicense.com/licenses/mit/).
 
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
+🌟 ¡Apoya Mis Proyectos! 🚀
+
+¡Realiza las contribuciones que veas necesarias, el código es totalmente tuyo. Juntos podemos hacer cosas asombrosas y mejorar el mundo del desarrollo. Tu apoyo es invaluable. ✨
+
+Si tienes ideas, sugerencias o simplemente deseas colaborar, ¡estamos abiertos a todo! ¡Únete a nuestra comunidad y forma parte de nuestro viaje hacia el éxito! 🌐👩‍💻👨‍💻
