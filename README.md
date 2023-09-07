@@ -8,7 +8,7 @@ The `LaravelRuntime` library empowers you to modify Laravel configuration values
 [![Laravel 9.0+](https://img.shields.io/badge/Laravel-9.0%2B-orange.svg)](https://laravel.com)
 [![Laravel 10.0+](https://img.shields.io/badge/Laravel-10.0%2B-orange.svg)](https://laravel.com)
 
-![RUNTIME_LARAVEL](https://github.com/rmunate/PHPInfoServer/assets/91748598/b3f78d8b-9f01-4c81-8d08-a0f86791c4f9)
+![logo-laravel-config-runtime](https://github.com/alejandrodiazpinilla/LaravelConfigRuntime/assets/51100789/b3e3cca0-d763-44f9-8ebb-b986a99e7e4e)
 
 📖 [**DOCUMENTACIÓN EN ESPAÑOL**](README_SPANISH.md) 📖
 
